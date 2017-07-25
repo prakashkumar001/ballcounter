@@ -1,6 +1,7 @@
 package com.dexeldesigns.ballcounter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.hardware.SensorManager;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
@@ -11,6 +12,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dexeldesigns.ballcounter.umpire.TabPageActivity;
 import com.squareup.seismic.ShakeDetector;
 
 public class MainActivity extends AppCompatActivity implements ShakeDetector.Listener{
@@ -89,7 +91,9 @@ public class MainActivity extends AppCompatActivity implements ShakeDetector.Lis
         Vibrator v = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
         // Vibrate for 500 milliseconds
         v.vibrate(500);
-        Toast.makeText(this, "Don't shake me, bro!", Toast.LENGTH_SHORT).show();
+
+        Intent i=new Intent(MainActivity.this, TabPageActivity.class);
+        startActivity(i);
 
     }
 
