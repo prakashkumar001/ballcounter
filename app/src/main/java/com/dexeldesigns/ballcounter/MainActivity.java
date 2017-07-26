@@ -1,5 +1,6 @@
 package com.dexeldesigns.ballcounter;
 
+import android.app.ActivityManager;
 import android.content.Context;
 import android.content.Intent;
 import android.hardware.SensorManager;
@@ -12,18 +13,24 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.dexeldesigns.ballcounter.common.GlobalClass;
 import com.dexeldesigns.ballcounter.umpire.TabPageActivity;
 import com.squareup.seismic.ShakeDetector;
+
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity implements ShakeDetector.Listener{
 
     TextView balls,overs,wickets;
     float count=0.0f;
     int overscount=0;
+
+    GlobalClass global;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        global=(GlobalClass)getApplicationContext();
         init();
         SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         ShakeDetector sd = new ShakeDetector(this);
@@ -92,8 +99,18 @@ public class MainActivity extends AppCompatActivity implements ShakeDetector.Lis
         // Vibrate for 500 milliseconds
         v.vibrate(500);
 
-        Intent i=new Intent(MainActivity.this, TabPageActivity.class);
-        startActivity(i);
+        if(global.TabActivitycount.equalsIgnoreCase("1"))
+        {
+
+        }else {
+
+            Intent i=new Intent(MainActivity.this,TabPageActivity.class);
+            startActivity(i);
+        }
+
+
+
+
 
     }
 
@@ -120,6 +137,18 @@ public class MainActivity extends AppCompatActivity implements ShakeDetector.Lis
         public abstract void onDoubleClick(View v);
     }
 
+    public boolean isActivityRunning() {
 
+        boolean isActivityFound=false;
+        ActivityManager activityManager = (ActivityManager)this.getSystemService (Context.ACTIVITY_SERVICE);
+        List<ActivityManager.RunningTaskInfo> activitys = activityManager.getRunningTasks(Integer.MAX_VALUE);
+        isActivityFound = false;
+        for (int i = 0; i < activitys.size(); i++) {
+            if (activitys.get(i).topActivity.toString().equalsIgnoreCase("ComponentInfo{com.dexeldesigns.ballcounter.umpire.TabPageActivity}")) {
+                isActivityFound = true;
+            }
+        }
+        return isActivityFound;
+    }
 
 }
