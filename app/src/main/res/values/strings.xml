@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">BallCounter</string>
+    <string name="title_fingerprint">One-touch Sign In</string>
+
 </resources>

@@ -9,4 +9,5 @@ import android.app.Application;
 public class GlobalClass extends Application {
 
     public static String TabActivitycount="0";
+    public static int Score=0;
 }

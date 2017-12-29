@@ -1,27 +1,36 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
        <!-- <ImageView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/logo_bg"
             />-->
-    <VideoView android:id="@+id/Videoview"
+    <!--<VideoView android:id="@+id/Videoview"
         android:layout_alignParentTop="true"
         android:layout_alignParentBottom="true"
         android:layout_alignParentLeft="true"
         android:layout_alignParentRight="true"
         android:layout_width="fill_parent"
         android:layout_height="fill_parent">
-    </VideoView>
+    </VideoView>-->
+    <com.yqritc.scalablevideoview.ScalableVideoView
+        android:id="@+id/Videoview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:scalableType="fitXY"/>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:src="@drawable/logo"
+        />
 
 
-    </FrameLayout>
 
 </RelativeLayout>
