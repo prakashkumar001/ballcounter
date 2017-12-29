@@ -52,9 +52,13 @@ public class MainActivity extends AppCompatActivity implements ShakeDetector.Lis
         addwicket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                wicketcount=wicketcount+1;
-                wickets.setText(String.valueOf(wicketcount));
-                currentrun.setText(String.valueOf(global.Score)+"/"+String.valueOf(wicketcount));
+                if(wicketcount<10)
+                {
+                    wicketcount=wicketcount+1;
+                    wickets.setText(String.valueOf(wicketcount));
+                    currentrun.setText(String.valueOf(global.Score)+"/"+String.valueOf(wicketcount));
+
+                }
 
             }
         });
@@ -179,16 +183,20 @@ public class MainActivity extends AppCompatActivity implements ShakeDetector.Lis
 
     @Override
     public void hearShake() {
-        Vibrator v = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
-        // Vibrate for 500 milliseconds
-        v.vibrate(500);
 
-        if(wicketcount<=9)
+        if(wicketcount<9)
         {
+            Vibrator v = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
+            // Vibrate for 500 milliseconds
+            v.vibrate(500);
+
             wicketcount=wicketcount+1;
             wickets.setText(String.valueOf(wicketcount));
             currentrun.setText(String.valueOf(global.Score)+"/"+String.valueOf(wicketcount));
 
+        }else
+        {
+            Toast.makeText(getApplicationContext(),"Match Over",Toast.LENGTH_SHORT).show();
         }
 
 
