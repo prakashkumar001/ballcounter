@@ -28,22 +28,23 @@ import com.squareup.seismic.ShakeDetector;
 
 import java.util.List;
 
-public class MainActivity extends AppCompatActivity implements ShakeDetector.Listener{
+public class MainActivity extends AppCompatActivity implements ShakeDetector.Listener {
 
-    TextView balls,overs,wickets,currentrun;
-    float count=0.0f;
-    int overscount=0;
-    int wicketcount=0;
-    ImageView addwicket,removewicket;
+    TextView balls, overs, wickets, currentrun;
+    float count = 0.0f;
+    int overscount = 0;
+    int wicketcount = 0;
+    ImageView addwicket, removewicket;
     boolean doubleBackToExitPressedOnce = false;
     Button runs;
-    ImageView text1,text2,text3,text4,text6,addball;
+    ImageView text1, text2, text3, text4, text6, addball;
     GlobalClass global;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
-        global=(GlobalClass)getApplicationContext();
+        global = (GlobalClass) getApplicationContext();
         init();
         SensorManager sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         ShakeDetector sd = new ShakeDetector(this);
@@ -52,11 +53,10 @@ public class MainActivity extends AppCompatActivity implements ShakeDetector.Lis
         addwicket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(wicketcount<10)
-                {
-                    wicketcount=wicketcount+1;
+                if (wicketcount < 10) {
+                    wicketcount = wicketcount + 1;
                     wickets.setText(String.valueOf(wicketcount));
-                    currentrun.setText(String.valueOf(global.Score)+"/"+String.valueOf(wicketcount));
+                    currentrun.setText(String.valueOf(global.Score) + "/" + String.valueOf(wicketcount));
 
                 }
 
@@ -66,18 +66,23 @@ public class MainActivity extends AppCompatActivity implements ShakeDetector.Lis
         addball.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(count>0.4f)
+
+                if(wicketcount<10)
                 {
-                    count=0.0f;
-                    overscount=overscount+1;
+                    if (count > 0.4f) {
+                    count = 0.0f;
+                    overscount = overscount + 1;
                     overs.setText(String.valueOf(overscount));
-                }else {
-                    count=count+0.1f;
+                } else {
+                    count = count + 0.1f;
                 }
 
-                Log.i("BALL","BALL"+count);
-                balls.setText(String.format("%.1f", count));
-                currentrun.setText(String.valueOf(global.Score)+"/"+String.valueOf(wicketcount));
+                    Log.i("BALL", "BALL" + count);
+                    balls.setText(String.format("%.1f", count));
+                    currentrun.setText(String.valueOf(global.Score) + "/" + String.valueOf(wicketcount));
+
+
+                }
 
 
             }
@@ -87,24 +92,22 @@ public class MainActivity extends AppCompatActivity implements ShakeDetector.Lis
             @Override
             public void onClick(View view) {
 
-                if(wicketcount==0)
+                if (wicketcount == 0) {
+                    Toast.makeText(MainActivity.this, "You cant remove wickets", Toast.LENGTH_SHORT).show();
+                } else if(wicketcount>10){
+                    Toast.makeText(MainActivity.this, "Match Over", Toast.LENGTH_SHORT).show();
+                }else
                 {
-                    Toast.makeText(MainActivity.this,"You cant remove wickets",Toast.LENGTH_SHORT).show();
-                }else {
-                    wicketcount=wicketcount-1;
+                    wicketcount = wicketcount - 1;
                 }
                 wickets.setText(String.valueOf(wicketcount));
-                currentrun.setText(String.valueOf(global.Score)+"/"+String.valueOf(wicketcount));
+                currentrun.setText(String.valueOf(global.Score) + "/" + String.valueOf(wicketcount));
 
             }
         });
-        runs.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                showrundialog();
-            }
-        });
+
     }
+
     @Override
     public boolean dispatchKeyEvent(KeyEvent event) {
         int action = event.getAction();
@@ -114,21 +117,16 @@ public class MainActivity extends AppCompatActivity implements ShakeDetector.Lis
                 if (action == KeyEvent.ACTION_DOWN) {
                     //TODO
 
-                    if(count>0.4f)
-                    {
-                        count=0.0f;
-                        overscount=overscount+1;
+                    if (count > 0.4f) {
+                        count = 0.0f;
+                        overscount = overscount + 1;
                         overs.setText(String.valueOf(overscount));
-                    }else {
-                        count=count+0.1f;
+                    } else {
+                        count = count + 0.1f;
                     }
 
-                    Log.i("BALL","BALL"+count);
+                    Log.i("BALL", "BALL" + count);
                     balls.setText(String.format("%.1f", count));
-
-
-
-
 
 
                 }
@@ -137,13 +135,12 @@ public class MainActivity extends AppCompatActivity implements ShakeDetector.Lis
                 if (action == KeyEvent.ACTION_DOWN) {
                     //TODO
 
-                    if(count==0.0f)
-                    {
-                        count=0.0f;
-                    }else {
-                        count=count-0.1f;
+                    if (count == 0.0f) {
+                        count = 0.0f;
+                    } else {
+                        count = count - 0.1f;
                     }
-                    Log.i("BALL","BALL"+count);
+                    Log.i("BALL", "BALL" + count);
                     balls.setText(String.valueOf(String.format("%.1f", count)));
 
                 }
@@ -155,52 +152,43 @@ public class MainActivity extends AppCompatActivity implements ShakeDetector.Lis
 
     }
 
-    void init()
-    {
-        balls=(TextView)findViewById(R.id.ball);
-        overs=(TextView)findViewById(R.id.overs);
-        wickets=(TextView)findViewById(R.id.wickets);
-        currentrun=(TextView)findViewById(R.id.currentrun);
-        addwicket=(ImageView) findViewById(R.id.addwicket);
-        removewicket=(ImageView) findViewById(R.id.removewicket);
-        runs=(Button) findViewById(R.id.runs);
-        text1=(ImageView)findViewById(R.id.text1);
-        text2=(ImageView)findViewById(R.id.text2);
-        text3=(ImageView)findViewById(R.id.text3);
-        text4=(ImageView)findViewById(R.id.text4);
-        text6=(ImageView)findViewById(R.id.text6);
-        addball=(ImageView)findViewById(R.id.addball);
+    void init() {
+        balls = (TextView) findViewById(R.id.ball);
+        overs = (TextView) findViewById(R.id.overs);
+        wickets = (TextView) findViewById(R.id.wickets);
+        currentrun = (TextView) findViewById(R.id.currentrun);
+        addwicket = (ImageView) findViewById(R.id.addwicket);
+        removewicket = (ImageView) findViewById(R.id.removewicket);
+        //runs=(Button) findViewById(R.id.runs);
+        text1 = (ImageView) findViewById(R.id.text1);
+        text2 = (ImageView) findViewById(R.id.text2);
+        text3 = (ImageView) findViewById(R.id.text3);
+        text4 = (ImageView) findViewById(R.id.text4);
+        text6 = (ImageView) findViewById(R.id.text6);
+        addball = (ImageView) findViewById(R.id.addball);
 
     }
-
-
-
-
-
-
-
 
 
     @Override
     public void hearShake() {
 
-        if(wicketcount<9)
-        {
+        if (wicketcount < 9) {
             Vibrator v = (Vibrator) this.getSystemService(Context.VIBRATOR_SERVICE);
             // Vibrate for 500 milliseconds
             v.vibrate(500);
 
-            wicketcount=wicketcount+1;
+            wicketcount = wicketcount + 1;
             wickets.setText(String.valueOf(wicketcount));
-            currentrun.setText(String.valueOf(global.Score)+"/"+String.valueOf(wicketcount));
+            currentrun.setText(String.valueOf(global.Score) + "/" + String.valueOf(wicketcount));
 
-        }else
-        {
-            Toast.makeText(getApplicationContext(),"Match Over",Toast.LENGTH_SHORT).show();
+        } else {
+            Toast.makeText(getApplicationContext(), "Match Over", Toast.LENGTH_SHORT).show();
         }
 
 
     }
+
 
     public abstract class DoubleClickListener implements View.OnClickListener {
 
@@ -226,11 +214,10 @@ public class MainActivity extends AppCompatActivity implements ShakeDetector.Lis
     }
 
 
-
     @Override
     public void onBackPressed() {
         if (doubleBackToExitPressedOnce) {
-            global.Score=0;
+            global.Score = 0;
             super.onBackPressed();
             return;
         }
@@ -242,84 +229,40 @@ public class MainActivity extends AppCompatActivity implements ShakeDetector.Lis
 
             @Override
             public void run() {
-                doubleBackToExitPressedOnce=false;
+                doubleBackToExitPressedOnce = false;
             }
         }, 2000);
     }
 
-    public void showrundialog() {
 
-        // custom dialog
-        final Dialog dialog = new Dialog(MainActivity.this, R.style.DialogSlideAnim);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
-        dialog.setContentView(R.layout.run_dialog);
-        dialog.getWindow().setGravity(Gravity.CENTER);
-        //dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
+    public void enterPin(View view) {
+        ImageView clickedRun = (ImageView) view;
 
-        DisplayMetrics metrics = getApplicationContext().getResources().getDisplayMetrics();
-        int width = metrics.widthPixels;
-        int height = metrics.heightPixels;
-        dialog.show();
-        dialog.getWindow().setLayout((7 * width) / 10, (7 * height) / 10);
-
-        ImageView imageView1=(ImageView)dialog.findViewById(R.id.text1);
-        ImageView imageView2=(ImageView)dialog.findViewById(R.id.text2);
-        ImageView imageView3=(ImageView)dialog.findViewById(R.id.text3);
-        ImageView imageView4=(ImageView)dialog.findViewById(R.id.text4);
-        ImageView imageView6=(ImageView)dialog.findViewById(R.id.text6);
-
-        imageView1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                global.Score=global.Score+1;
-                currentrun.setText(String.valueOf(global.Score)+"/"+String.valueOf(wicketcount));
-
-                dialog.dismiss();
-
+        if(wicketcount<10)
+        {
+            if (clickedRun.getId() == R.id.text1) {
+                global.Score = global.Score + 1;
+                currentrun.setText(String.valueOf(global.Score) + "/" + String.valueOf(wicketcount));
+            } else if (clickedRun.getId() == R.id.text2) {
+                global.Score = global.Score + 2;
+                currentrun.setText(String.valueOf(global.Score) + "/" + String.valueOf(wicketcount));
+            } else if (clickedRun.getId() == R.id.text3) {
+                global.Score = global.Score + 3;
+                currentrun.setText(String.valueOf(global.Score) + "/" + String.valueOf(wicketcount));
+            } else if (clickedRun.getId() == R.id.text4) {
+                global.Score = global.Score + 4;
+                currentrun.setText(String.valueOf(global.Score) + "/" + String.valueOf(wicketcount));
+            } else if (clickedRun.getId() == R.id.text6) {
+                global.Score = global.Score + 6;
+                currentrun.setText(String.valueOf(global.Score) + "/" + String.valueOf(wicketcount));
             }
-        });
-
-        imageView2.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                global.Score=global.Score+2;
-                currentrun.setText(String.valueOf(global.Score)+"/"+String.valueOf(wicketcount));
-
-                dialog.dismiss();
-
-            }
-        });
-        imageView3.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                global.Score=global.Score+3;
-                currentrun.setText(String.valueOf(global.Score)+"/"+String.valueOf(wicketcount));
-
-                dialog.dismiss();
-
-            }
-        });
-        imageView4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                global.Score=global.Score+4;
-                currentrun.setText(String.valueOf(global.Score)+"/"+String.valueOf(wicketcount));
-
-                dialog.dismiss();
-
-            }
-        });
-        imageView6.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                global.Score=global.Score+6;
-                currentrun.setText(String.valueOf(global.Score)+"/"+String.valueOf(wicketcount));
-                dialog.dismiss();
-            }
-        });
-        dialog.show();
+        }else
+        {
+            Toast.makeText(getApplicationContext(),"Match Over ! Please try new match",Toast.LENGTH_SHORT).show();
+        }
 
 
     }
-
 }
+
+

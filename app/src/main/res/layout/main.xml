@@ -176,40 +176,41 @@
             >
 
             <ImageView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_weight="1"
                 android:layout_height="wrap_content"
                 android:src="@drawable/bc"
                 />
 
             <FrameLayout
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 >
 
 
             <ImageView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:src="@drawable/balls"
                 />
 
                 <TextView
                     android:id="@+id/ball"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_width="match_parent"
+                    android:layout_height="70dp"
                     android:layout_gravity="center"
-                    android:textSize="20dp"
-                    android:paddingRight="10dp"
                     android:paddingTop="10dp"
+
+                    android:gravity="center"
+                    android:textSize="20dp"
                     android:textColor="@android:color/black"
                     android:text="0"
                     />
             </FrameLayout>
             <ImageView
                 android:id="@+id/addball"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:src="@drawable/nex"
@@ -226,7 +227,7 @@
             >
 
             <ImageView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:src="@drawable/bc"
@@ -234,14 +235,14 @@
 
 
             <FrameLayout
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 >
 
 
                 <ImageView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:src="@drawable/over"
                     />
@@ -249,17 +250,17 @@
                 <TextView
                     android:id="@+id/overs"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="70dp"
                     android:layout_gravity="center"
+                    android:gravity="center"
                     android:textSize="20dp"
-                    android:paddingRight="10dp"
                     android:paddingTop="10dp"
                     android:textColor="@android:color/black"
                     android:text="0"
                     />
             </FrameLayout>
             <ImageView
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:src="@drawable/nex"
@@ -277,7 +278,7 @@
 
             <ImageView
                 android:id="@+id/removewicket"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:src="@drawable/bc"
@@ -285,14 +286,14 @@
 
 
             <FrameLayout
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 >
 
 
                 <ImageView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:src="@drawable/wick"
                     />
@@ -300,10 +301,10 @@
                 <TextView
                     android:id="@+id/wickets"
                     android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
+                    android:layout_height="70dp"
                     android:layout_gravity="center"
+                    android:gravity="center"
                     android:textSize="20dp"
-                    android:paddingRight="10dp"
                     android:paddingTop="10dp"
                     android:textColor="@android:color/black"
                     android:text="0"
@@ -312,7 +313,7 @@
 
             <ImageView
                 android:id="@+id/addwicket"
-                android:layout_width="wrap_content"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:src="@drawable/nex"
