@@ -38,6 +38,14 @@
         <activity android:name=".fingerprint.FingerprintActivity"
             android:screenOrientation="portrait"
             />
+
+        <activity android:name=".activities.Home"
+            android:screenOrientation="portrait"
+            />
+
+        <activity android:name=".activities.ManageTeams"
+            android:screenOrientation="portrait"
+            />
     </application>
 
 </manifest>

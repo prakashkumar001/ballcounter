@@ -12,6 +12,7 @@ import android.widget.TextView;
 
 import com.dexeldesigns.ballcounter.MainActivity;
 import com.dexeldesigns.ballcounter.R;
+import com.dexeldesigns.ballcounter.activities.Home;
 
 /**
  * Created by whit3hawks on 11/16/16.
@@ -51,7 +52,7 @@ public class FingerprintHandler extends FingerprintManager.AuthenticationCallbac
     @Override
     public void onAuthenticationSucceeded(FingerprintManager.AuthenticationResult result) {
         ((Activity) context).finish();
-        Intent intent = new Intent(context, MainActivity.class);
+        Intent intent = new Intent(context, Home.class);
         context.startActivity(intent);
     }
 

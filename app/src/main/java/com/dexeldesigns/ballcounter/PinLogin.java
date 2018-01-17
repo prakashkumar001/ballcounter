@@ -11,6 +11,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.dexeldesigns.ballcounter.activities.Home;
+
 /**
  * Created by Creative IT Works on 27-Jul-17.
  */
@@ -157,7 +159,7 @@ public class PinLogin extends AppCompatActivity {
             if(userId.equalsIgnoreCase("1234") )
             {
 
-                Intent i=new Intent(PinLogin.this,MainActivity.class);
+                Intent i=new Intent(PinLogin.this,Home.class);
                 startActivity(i);
                 finish();
 
